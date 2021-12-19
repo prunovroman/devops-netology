@@ -29,6 +29,7 @@
         -rw-r--r-- 1 root root 22712441 Dec  1 08:14 test.gz
       ```
 1. Используя pvmove, переместите содержимое PV с RAID0 на RAID1:
+
     * ```bash
         vagrant@vagrant:~$ lsblk
         NAME                 MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT

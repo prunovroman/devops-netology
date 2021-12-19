@@ -138,7 +138,6 @@
 
     Now try logging into the machine, with:   "ssh 'vagrant@192.168.44.199'"
     and check to make sure that only the key(s) you wanted were added.
-
 ```
 
 1.Переименуйте файлы ключей из задания 5. Настройте файл конфигурации SSH клиента, так чтобы вход на удаленный сервер осуществлялся по имени сервера.

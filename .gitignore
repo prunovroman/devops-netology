@@ -1,2 +1,7 @@
 .idea/
 /.gitignore
+vagrant/4.2/test.py
+test.py
+test1.py
+socket.py
+test_socket.py

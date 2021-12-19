@@ -5,6 +5,9 @@
 # Test line 2
 
 # Test line 3
+### Test line fix breach
+
+# Test Pycharm 
 
 
 Будут проигнорированы все файлы в каталогах .terraform, файлы с расширением 

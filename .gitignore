@@ -6,3 +6,6 @@ test1.py
 socket.py
 test_socket.py
 __pycache__/
+hosts.yaml
+hosts.json
+.vscode/settings.json

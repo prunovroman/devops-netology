@@ -126,7 +126,7 @@ vagrant@vagrant:/home/els$ curl localhost:9200
 
 Удалите все индексы.
 
-**Важно**
+### Важно
 
 При проектировании кластера elasticsearch нужно корректно рассчитывать количество реплик и шард,
 иначе возможна потеря данных индексов, вплоть до полной, при деградации системы.
@@ -263,7 +263,7 @@ vagrant@vagrant:/home/els$ curl -X DELETE 'http://localhost:9200/ind-3?pretty'
 
 ```
 
-Индексы в статусе Yellow потому что у них указано число реплик, а по факту нет других серверов, соответсвено реплицировать некуда. 
+Индексы в статусе Yellow потому что у них указано число реплик, а по факту нет других серверов, соответсвено реплицировать некуда.
 
 ## Задача 3
 
@@ -280,7 +280,7 @@ vagrant@vagrant:/home/els$ curl -X DELETE 'http://localhost:9200/ind-3?pretty'
 
 Создайте индекс `test` с 0 реплик и 1 шардом и **приведите в ответе** список индексов.
 
-[Создайте `snapshot`](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-take-snapshot.html) 
+[Создайте `snapshot`](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-take-snapshot.html)
 состояния кластера `elasticsearch`.
 
 **Приведите в ответе** список файлов в директории со `snapshot`ами.
@@ -288,11 +288,12 @@ vagrant@vagrant:/home/els$ curl -X DELETE 'http://localhost:9200/ind-3?pretty'
 Удалите индекс `test` и создайте индекс `test-2`. **Приведите в ответе** список индексов.
 
 [Восстановите](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-restore-snapshot.html) состояние
-кластера `elasticsearch` из `snapshot`, созданного ранее. 
+кластера `elasticsearch` из `snapshot`, созданного ранее.
 
 **Приведите в ответе** запрос к API восстановления и итоговый список индексов.
 
 Подсказки:
+
 - возможно вам понадобится доработать `elasticsearch.yml` в части директивы `path.repo` и перезапустить `elasticsearch`
 
 ---

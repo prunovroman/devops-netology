@@ -18,12 +18,20 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro"
-  cpu_core_count = 16
-  private_ip = "192.168.1.100"
-
+  instance_type = local.instance_type_map[terraform.workspace]
+  count = local.instance_count_map[terraform.workspace]
   tags = {
-    Name = "Netology"
+    Name = "Netology ${count.index + 1 }"
+  }
+}
+
+resource "aws_instance" "web1" {
+  for_each = local.instances[terraform.workspace]
+  
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = each.value
+  tags = {
+    Name = each.key
   }
 }
 

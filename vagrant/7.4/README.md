@@ -42,8 +42,7 @@
 
 ---
 
-Ссылка на серверный конфиг: <https://github.com/prunovr/devops-netology/tree/main/vagrant/7.4/atlantis/server.yaml>  
-Ссылка на клиентский конфиг: <https://github.com/prunovr/devops-netology/tree/main/vagrant/7.4/atlantis/atlantis.yaml>
+Ссылка на серверный и клиентский конфиг: <https://github.com/prunovr/devops-netology/tree/main/vagrant/7.4/atlantis>  
 
 ## Задача 3. Знакомство с каталогом модулей
 
@@ -56,3 +55,248 @@
 В качестве результата задания приложите ссылку на созданный блок конфигураций.
 
 ---
+
+1. Нашел официальный модуль от AWS EC2 <https://registry.terraform.io/modules/terraform-aws-modules/ec2-instance/aws/latest>.
+1. Изучил данный модуль. Если потребуется создавать одну и туже структуру только с изменениями некоторых паратмеров. то да буду использовать модули, для этого они и предназначены.
+1. Ссылка <https://github.com/prunovr/devops-netology/tree/main/vagrant/7.4/terraform_as_module>
+    - terraform plan
+
+    ```bash
+      vagrant@vagrant:~/terraform_modules/tr_modul$ terraform plan
+
+      Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+
+      - create
+
+      Terraform will perform the following actions:
+
+      # module.ec2-instance["vm1"].aws_instance.this[0] will be created
+
+      - resource "aws_instance" "this" {
+        - ami                                  = "ami-0fd63e471b04e22d0"
+        - arn                                  = (known after apply)
+        - associate_public_ip_address          = (known after apply)
+        - availability_zone                    = (known after apply)
+        - cpu_core_count                       = (known after apply)
+        - cpu_threads_per_core                 = (known after apply)
+        - disable_api_termination              = (known after apply)
+        - ebs_optimized                        = (known after apply)
+        - get_password_data                    = false
+        - host_id                              = (known after apply)
+        - id                                   = (known after apply)
+        - instance_initiated_shutdown_behavior = (known after apply)
+        - instance_state                       = (known after apply)
+        - instance_type                        = "t2.small"
+        - ipv6_address_count                   = (known after apply)
+        - ipv6_addresses                       = (known after apply)
+        - key_name                             = (known after apply)
+        - monitoring                           = true
+        - outpost_arn                          = (known after apply)
+        - password_data                        = (known after apply)
+        - placement_group                      = (known after apply)
+        - placement_partition_number           = (known after apply)
+        - primary_network_interface_id         = (known after apply)
+        - private_dns                          = (known after apply)
+        - private_ip                           = (known after apply)
+        - public_dns                           = (known after apply)
+        - public_ip                            = (known after apply)
+        - secondary_private_ips                = (known after apply)
+        - security_groups                      = (known after apply)
+        - source_dest_check                    = true
+        - subnet_id                            = (known after apply)
+        - tags                                 = {
+          - "Name" = "app-server-vm1"
+              }
+        - tags_all                             = {
+          - "Name" = "app-server-vm1"
+              }
+        - tenancy                              = (known after apply)
+        - user_data                            = (known after apply)
+        - user_data_base64                     = (known after apply)
+        - user_data_replace_on_change          = false
+        - volume_tags                          = {
+          - "Name" = "app-server-vm1"
+              }
+        - vpc_security_group_ids               = [
+          - "sg-0c3a866a7df722c37",
+              ]
+
+        - capacity_reservation_specification {
+          - capacity_reservation_preference = (known after apply)
+
+          - capacity_reservation_target {
+            - capacity_reservation_id = (known after apply)
+                  }
+              }
+
+        - credit_specification {}
+
+        - ebs_block_device {
+          - delete_on_termination = (known after apply)
+          - device_name           = (known after apply)
+          - encrypted             = (known after apply)
+          - iops                  = (known after apply)
+          - kms_key_id            = (known after apply)
+          - snapshot_id           = (known after apply)
+          - tags                  = (known after apply)
+          - throughput            = (known after apply)
+          - volume_id             = (known after apply)
+          - volume_size           = (known after apply)
+          - volume_type           = (known after apply)
+              }
+
+        - enclave_options {
+          - enabled = (known after apply)
+              }
+
+        - ephemeral_block_device {
+          - device_name  = (known after apply)
+          - no_device    = (known after apply)
+          - virtual_name = (known after apply)
+              }
+
+        - metadata_options {
+          - http_endpoint               = "enabled"
+          - http_put_response_hop_limit = 1
+          - http_tokens                 = "optional"
+          - instance_metadata_tags      = "disabled"
+              }
+
+        - network_interface {
+          - delete_on_termination = (known after apply)
+          - device_index          = (known after apply)
+          - network_interface_id  = (known after apply)
+              }
+
+        - root_block_device {
+          - delete_on_termination = (known after apply)
+          - device_name           = (known after apply)
+          - encrypted             = (known after apply)
+          - iops                  = (known after apply)
+          - kms_key_id            = (known after apply)
+          - tags                  = (known after apply)
+          - throughput            = (known after apply)
+          - volume_id             = (known after apply)
+          - volume_size           = (known after apply)
+          - volume_type           = (known after apply)
+              }
+
+        - timeouts {}
+          }
+
+      # module.ec2-instance["vm2"].aws_instance.this[0] will be created
+
+      - resource "aws_instance" "this" {
+        - ami                                  = "ami-0fd63e471b04e22d0"
+        - arn                                  = (known after apply)
+        - associate_public_ip_address          = (known after apply)
+        - availability_zone                    = (known after apply)
+        - cpu_core_count                       = (known after apply)
+        - cpu_threads_per_core                 = (known after apply)
+        - disable_api_termination              = (known after apply)
+        - ebs_optimized                        = (known after apply)
+        - get_password_data                    = false
+        - host_id                              = (known after apply)
+        - id                                   = (known after apply)
+        - instance_initiated_shutdown_behavior = (known after apply)
+        - instance_state                       = (known after apply)
+        - instance_type                        = "t2.large"
+        - ipv6_address_count                   = (known after apply)
+        - ipv6_addresses                       = (known after apply)
+        - key_name                             = (known after apply)
+        - monitoring                           = true
+        - outpost_arn                          = (known after apply)
+        - password_data                        = (known after apply)
+        - placement_group                      = (known after apply)
+        - placement_partition_number           = (known after apply)
+        - primary_network_interface_id         = (known after apply)
+        - private_dns                          = (known after apply)
+        - private_ip                           = (known after apply)
+        - public_dns                           = (known after apply)
+        - public_ip                            = (known after apply)
+        - secondary_private_ips                = (known after apply)
+        - security_groups                      = (known after apply)
+        - source_dest_check                    = true
+        - subnet_id                            = (known after apply)
+        - tags                                 = {
+          - "Name" = "app-server-vm2"
+              }
+        - tags_all                             = {
+          - "Name" = "app-server-vm2"
+              }
+        - tenancy                              = (known after apply)
+        - user_data                            = (known after apply)
+        - user_data_base64                     = (known after apply)
+        - user_data_replace_on_change          = false
+        - volume_tags                          = {
+          - "Name" = "app-server-vm2"
+              }
+        - vpc_security_group_ids               = [
+          - "sg-0c3a866a7df722c37",
+              ]
+
+        - capacity_reservation_specification {
+          - capacity_reservation_preference = (known after apply)
+
+          - capacity_reservation_target {
+            - capacity_reservation_id = (known after apply)
+                  }
+              }
+
+        - credit_specification {}
+
+        - ebs_block_device {
+          - delete_on_termination = (known after apply)
+          - device_name           = (known after apply)
+          - encrypted             = (known after apply)
+          - iops                  = (known after apply)
+          - kms_key_id            = (known after apply)
+          - snapshot_id           = (known after apply)
+          - tags                  = (known after apply)
+          - throughput            = (known after apply)
+          - volume_id             = (known after apply)
+          - volume_size           = (known after apply)
+          - volume_type           = (known after apply)
+              }
+
+        - enclave_options {
+          - enabled = (known after apply)
+              }
+
+        - ephemeral_block_device {
+          - device_name  = (known after apply)
+          - no_device    = (known after apply)
+          - virtual_name = (known after apply)
+              }
+
+        - metadata_options {
+          - http_endpoint               = "enabled"
+          - http_put_response_hop_limit = 1
+          - http_tokens                 = "optional"
+          - instance_metadata_tags      = "disabled"
+              }
+
+        - network_interface {
+          - delete_on_termination = (known after apply)
+          - device_index          = (known after apply)
+          - network_interface_id  = (known after apply)
+              }
+
+        - root_block_device {
+          - delete_on_termination = (known after apply)
+          - device_name           = (known after apply)
+          - encrypted             = (known after apply)
+          - iops                  = (known after apply)
+          - kms_key_id            = (known after apply)
+          - tags                  = (known after apply)
+          - throughput            = (known after apply)
+          - volume_id             = (known after apply)
+          - volume_size           = (known after apply)
+          - volume_type           = (known after apply)
+              }
+
+        - timeouts {}
+          }
+
+      Plan: 2 to add, 0 to change, 0 to destroy.
+    ```

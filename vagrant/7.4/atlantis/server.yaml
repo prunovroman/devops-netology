@@ -1,0 +1,12 @@
+repos:
+  - id: github.com/prunovr/devops-netology/tree/main/terraform
+    apply_requirements: [approved, mergeable]
+    allowed_overrides: [workflow]
+    allow_custom_workflows: true
+
+workflows:
+  default:
+    plan:
+      steps:
+        - plan:
+            extra_args: ["-lock", "false"]

@@ -1,0 +1,64 @@
+---
+- name: Install Clickhouse
+  hosts: clickhouse
+  handlers:
+    - name: Start clickhouse service
+      become: true
+      ansible.builtin.service:
+        name: clickhouse-server
+        state: started
+  tasks:
+    - name: Pre-install configuration
+      become: true
+      block:
+        - name: Install transport-https ca-certificates dirmngr
+          ansible.builtin.apt:
+            pkg:
+              - apt-transport-https
+              - ca-certificates
+              - dirmngr
+        - name: Add an apt key by id from a keyserver
+          ansible.builtin.apt_key:
+            keyserver: hkp://keyserver.ubuntu.com:80
+            id: 8919F6BD2B48D754
+        - name: Add specified repository into sources list
+          ansible.builtin.apt_repository:
+            repo: deb https://packages.clickhouse.com/deb stable main
+            state: present
+    - name: Install clickhouse packages
+      become: true
+      ansible.builtin.apt:
+        pkg: "{{ clickhouse_packages }}"
+        update_cache: true
+      notify: Start clickhouse service
+    - name: Create database
+      ansible.builtin.command: "clickhouse-client -q 'create database logs;'"
+      register: create_db
+      failed_when: create_db.rc != 0 and create_db.rc !=82
+      changed_when: create_db.rc == 0
+  tags: clickhouse
+
+- name: Install vector
+  hosts: clickhouse
+  handlers:
+    - name: Start vector service
+      become: true
+      ansible.builtin.service:
+        name: vector
+        state: started
+  tasks:
+    - name: Add the Vector repo
+      ansible.builtin.get_url:
+        url: "https://repositories.timber.io/public/vector/cfg/setup/bash.deb.sh"
+        dest: "./bash.deb.sh"
+        mode: "0755"
+    - name: Run script for add specified repository into sources list
+      become: true
+      ansible.builtin.script: "./bash.deb.sh"
+    - name: Install Vector
+      become: true
+      ansible.builtin.apt:
+        name: vector
+        update_cache: true
+      notify: Start vector service
+  tags: vector

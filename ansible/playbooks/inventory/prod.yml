@@ -1,5 +1,5 @@
 ---
-inside:
+clickhouse:
   hosts:
     localhost:
       ansible_connection: local

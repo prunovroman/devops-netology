@@ -4,11 +4,13 @@
   handlers:
     - name: Start clickhouse service
       become: true
-      ansible.builtin.service:
-        name: clickhouse-server
-        state: started
-  tasks:
-    - name: Pre-install configuration
+      ansible.builtin.systemd:
+        name: clickhouse-server.service
+        state: restarted
+        enabled: true
+        daemon_reload: false
+  pre_tasks:
+    - name: Install dependences, add keys and repo
       become: true
       block:
         - name: Install transport-https ca-certificates dirmngr
@@ -17,18 +19,22 @@
               - apt-transport-https
               - ca-certificates
               - dirmngr
+            state: present
         - name: Add an apt key by id from a keyserver
           ansible.builtin.apt_key:
             keyserver: hkp://keyserver.ubuntu.com:80
             id: 8919F6BD2B48D754
+            state: present
         - name: Add specified repository into sources list
           ansible.builtin.apt_repository:
             repo: deb https://packages.clickhouse.com/deb stable main
             state: present
+  tasks:
     - name: Install clickhouse packages
       become: true
       ansible.builtin.apt:
         pkg: "{{ clickhouse_packages }}"
+        state: present
         update_cache: true
       notify: Start clickhouse service
     - name: Create database
@@ -39,26 +45,90 @@
   tags: clickhouse
 
 - name: Install vector
-  hosts: clickhouse
+  hosts: vector
   handlers:
     - name: Start vector service
       become: true
       ansible.builtin.service:
         name: vector
-        state: started
+        state: restarted
   tasks:
-    - name: Add the Vector repo
-      ansible.builtin.get_url:
-        url: "https://repositories.timber.io/public/vector/cfg/setup/bash.deb.sh"
-        dest: "./bash.deb.sh"
-        mode: "0755"
-    - name: Run script for add specified repository into sources list
+    - name: Install, configure and start Vector
       become: true
-      ansible.builtin.script: "./bash.deb.sh"
-    - name: Install Vector
+      block:
+        - name: Add the Vector repo
+          ansible.builtin.apt_repository:
+            repo: deb https://repositories.timber.io/public/vector/deb/ubuntu focal main
+            state: present
+        - name: Install Vector
+          ansible.builtin.apt:
+            name: vector
+            update_cache: true
+            state: present
+          notify: Start vector service
+        - name: Vector | Template config
+          become: true
+          ansible.builtin.template:
+            src: templates/vector.yml.j2
+            dest: /etc/vector/vector.yml
+            mode: "0644"
+            validate: vector validate --no-environment --config-yaml %s
+  tags: vector
+
+- name: Install NGINX
+  hosts: lighthouse
+  handlers:
+    - name: Start NGINX service
+      become: true
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: true
+        daemon_reload: false
+  tasks:
+    - name: Install NGINX
       become: true
       ansible.builtin.apt:
-        name: vector
+        name: nginx
+        state: present
         update_cache: true
-      notify: Start vector service
-  tags: vector
+      notify: Start NGINX service
+  tags: nginx
+
+- name: Install lighthouse
+  hosts: lighthouse
+  handlers:
+    - name: Reload NGINX service
+      become: true
+      ansible.builtin.systemd:
+        name: nginx
+        state: restarted
+  pre_tasks:
+    - name: Install git
+      become: true
+      ansible.builtin.apt:
+        name: git
+        state: present
+        update_cache: true
+  tasks:
+    - name: Clone from git lighthouse
+      become: true
+      ansible.builtin.git:
+        repo: "{{ lighthouse_git_url }}"
+        dest: "{{ lighthouse_location_dir }}"
+        version: master
+    - name: Create config for nginx
+      become: true
+      ansible.builtin.template:
+        src: templates/lighthouse.conf.j2
+        dest: /etc/nginx/sites-available/lighthouse.conf
+        mode: "0644"
+    - name: Create link config in site-enabled for nginx
+      become: true
+      ansible.builtin.file:
+        src: /etc/nginx/sites-available/lighthouse.conf
+        dest: /etc/nginx/sites-enabled/lighthouse.conf
+        mode: "0644"
+        state: link
+      notify: Reload NGINX service
+  tags: lighthouse

@@ -61,4 +61,4 @@
 - :white_check_mark: Проверяем директорию `~/.m2/repository/`, находим наш артефакт
 - :white_check_mark: В ответе присылаем исправленный файл `pom.xml`
 
-   > [Ссылка на файл pom.xml](./Nexus/maven-metadata.xml)
+   > [Ссылка на файл pom.xml](./Maven/pom.xml)

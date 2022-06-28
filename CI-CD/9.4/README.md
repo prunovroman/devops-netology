@@ -9,11 +9,13 @@
 
 ## Основная часть
 
-1. Сделать Freestyle Job, который будет запускать `molecule test` из любого вашего репозитория с ролью.
-2. Сделать Declarative Pipeline Job, который будет запускать `molecule test` из любого вашего репозитория с ролью.
-3. Перенести Declarative Pipeline в репозиторий в файл `Jenkinsfile`.
-4. Создать Multibranch Pipeline на запуск `Jenkinsfile` из репозитория.
-5. Создать Scripted Pipeline, наполнить его скриптом из [pipeline](./pipeline).
-6. Внести необходимые изменения, чтобы Pipeline запускал `ansible-playbook` без флагов `--check --diff`, если не установлен параметр при запуске джобы (prod_run = True), по умолчанию параметр имеет значение False и запускает прогон с флагами `--check --diff`.
-7. Проверить работоспособность, исправить ошибки, исправленный Pipeline вложить в репозиторий в файл `ScriptedJenkinsfile`. Цель: получить собранный стек ELK в Ya.Cloud.
-8. Отправить две ссылки на репозитории в ответе: с ролью и Declarative Pipeline и c плейбукой и Scripted Pipeline.
+- :white_check_mark: Сделать Freestyle Job, который будет запускать `molecule test` из любого вашего репозитория с ролью.
+- :white_check_mark: Сделать Declarative Pipeline Job, который будет запускать `molecule test` из любого вашего репозитория с ролью.
+- :white_check_mark: Перенести Declarative Pipeline в репозиторий в файл `Jenkinsfile`.
+- :white_check_mark: Создать Multibranch Pipeline на запуск `Jenkinsfile` из репозитория.
+- :white_check_mark: Создать Scripted Pipeline, наполнить его скриптом из [pipeline](./pipeline).
+- :white_check_mark: Внести необходимые изменения, чтобы Pipeline запускал `ansible-playbook` без флагов `--check --diff`, если не установлен параметр при запуске джобы (prod_run = True), по умолчанию параметр имеет значение False и запускает прогон с флагами `--check --diff`.
+- :white_check_mark: Проверить работоспособность, исправить ошибки, исправленный Pipeline вложить в репозиторий в файл `ScriptedJenkinsfile`.
+- :white_check_mark: Отправить две ссылки на репозитории в ответе: с ролью и Declarative Pipeline и c плейбукой и Scripted Pipeline.
+    > Ссылка на [Declarative Pipeline](https://github.com/prunovr/vector-role/blob/master/Jenkinsfile) с ролью.
+    > Ссылка на [Scripted Pipeline](https://github.com/prunovr/devops-netology/blob/main/ansible/playbooks/ScriptedJenkinsfile) с плейбукой.

@@ -79,4 +79,4 @@
 
 :white_check_mark: Далее скопируйте отображаемое json-содержимое в отдельный файл и сохраните его.
 
-:white_check_mark: В решении задания - приведите листинг этого [файла] (dashboard/netology.json)
+:white_check_mark: В решении задания - приведите листинг этого [файла](./dashboard/netology.json)

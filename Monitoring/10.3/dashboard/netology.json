@@ -1,0 +1,779 @@
+{
+    "annotations": {
+        "list": [{
+            "builtIn": 1,
+            "datasource": "-- Grafana --",
+            "enable": true,
+            "hide": true,
+            "iconColor": "rgba(0, 211, 255, 1)",
+            "name": "Annotations & Alerts",
+            "type": "dashboard"
+        }]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 5,
+    "links": [],
+    "panels": [{
+            "collapsed": false,
+            "datasource": null,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 0
+            },
+            "id": 10,
+            "panels": [],
+            "title": "Row title",
+            "type": "row"
+        },
+        {
+            "datasource": null,
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {},
+                    "decimals": 0,
+                    "mappings": [],
+                    "max": 100,
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "percentage",
+                        "steps": [{
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "orange",
+                                "value": 85
+                            },
+                            {
+                                "color": "red",
+                                "value": 95
+                            }
+                        ]
+                    },
+                    "unit": "percent"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 6,
+                "x": 0,
+                "y": 1
+            },
+            "id": 8,
+            "options": {
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true,
+                "text": {}
+            },
+            "pluginVersion": "7.4.0",
+            "targets": [{
+                "expr": "100 * (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes",
+                "hide": false,
+                "interval": "",
+                "legendFormat": "",
+                "refId": "D"
+            }],
+            "title": "Memory free",
+            "type": "gauge"
+        },
+        {
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {},
+                    "decimals": 0,
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "blue",
+                                "value": 0
+                            }
+                        ]
+                    },
+                    "unit": "bytes"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 4,
+                "x": 6,
+                "y": 1
+            },
+            "id": 14,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+            },
+            "pluginVersion": "7.4.0",
+            "targets": [{
+                "expr": "node_memory_MemTotal_bytes",
+                "interval": "",
+                "legendFormat": "",
+                "refId": "A"
+            }],
+            "title": "RAM total",
+            "type": "stat"
+        },
+        {
+            "datasource": null,
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {},
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                            "color": "blue",
+                            "value": null
+                        }]
+                    },
+                    "unit": "short"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 3,
+                "x": 10,
+                "y": 1
+            },
+            "id": 12,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+            },
+            "pluginVersion": "7.4.0",
+            "targets": [{
+                "expr": "count(node_cpu_seconds_total{mode=\"system\"})",
+                "interval": "",
+                "legendFormat": "",
+                "refId": "A"
+            }],
+            "title": "CPU Cores",
+            "type": "stat"
+        },
+        {
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {},
+                    "decimals": 0,
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "blue",
+                                "value": 0
+                            }
+                        ]
+                    },
+                    "unit": "bytes"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 6,
+                "x": 13,
+                "y": 1
+            },
+            "id": 18,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+            },
+            "pluginVersion": "7.4.0",
+            "targets": [{
+                "expr": "node_filesystem_size_bytes{mountpoint=\"/\"}",
+                "interval": "",
+                "legendFormat": "",
+                "refId": "A"
+            }],
+            "title": "FS Total",
+            "type": "stat"
+        },
+        {
+            "datasource": null,
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {},
+                    "decimals": 1,
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "blue",
+                                "value": 0
+                            }
+                        ]
+                    },
+                    "unit": "s"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 5,
+                "x": 19,
+                "y": 1
+            },
+            "id": 16,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+            },
+            "pluginVersion": "7.4.0",
+            "targets": [{
+                "expr": "node_time_seconds{job=\"nodeexporter\"} - node_boot_time_seconds{job=\"nodeexporter\"}",
+                "interval": "",
+                "legendFormat": "",
+                "refId": "A"
+            }],
+            "title": "Uptime",
+            "type": "stat"
+        },
+        {
+            "alert": {
+                "alertRuleTags": {},
+                "conditions": [{
+                    "evaluator": {
+                        "params": [
+                            95
+                        ],
+                        "type": "gt"
+                    },
+                    "operator": {
+                        "type": "and"
+                    },
+                    "query": {
+                        "params": [
+                            "A",
+                            "5m",
+                            "now"
+                        ]
+                    },
+                    "reducer": {
+                        "params": [],
+                        "type": "avg"
+                    },
+                    "type": "query"
+                }],
+                "executionErrorState": "alerting",
+                "for": "5m",
+                "frequency": "1m",
+                "handler": 1,
+                "message": "Alert",
+                "name": "CPU Utilization alert",
+                "noDataState": "alerting",
+                "notifications": []
+            },
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": null,
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {},
+                    "custom": {},
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": []
+                    }
+                },
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 16,
+                "w": 12,
+                "x": 0,
+                "y": 7
+            },
+            "hiddenSeries": false,
+            "id": 2,
+            "legend": {
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "show": true,
+                "total": false,
+                "values": false
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.0",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [{
+                "expr": "100 - avg by (instance) ((irate(node_cpu_seconds_total{job=\"nodeexporter\",mode=\"idle\"}[$__rate_interval])) * 100)",
+                "format": "time_series",
+                "instant": false,
+                "interval": "",
+                "legendFormat": "",
+                "refId": "A"
+            }],
+            "thresholds": [{
+                "colorMode": "critical",
+                "fill": true,
+                "line": true,
+                "op": "gt",
+                "value": 95,
+                "visible": true
+            }],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "CPU Utilization",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "transformations": [],
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [{
+                    "$$hashKey": "object:407",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "$$hashKey": "object:408",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "alert": {
+                "alertRuleTags": {},
+                "conditions": [{
+                    "evaluator": {
+                        "params": [
+                            4
+                        ],
+                        "type": "gt"
+                    },
+                    "operator": {
+                        "type": "and"
+                    },
+                    "query": {
+                        "params": [
+                            "A",
+                            "5m",
+                            "now"
+                        ]
+                    },
+                    "reducer": {
+                        "params": [],
+                        "type": "avg"
+                    },
+                    "type": "query"
+                }],
+                "executionErrorState": "alerting",
+                "for": "5m",
+                "frequency": "1m",
+                "handler": 1,
+                "name": "CPUla alert",
+                "noDataState": "no_data",
+                "notifications": []
+            },
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": null,
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {},
+                    "custom": {},
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": []
+                    }
+                },
+                "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 16,
+                "w": 12,
+                "x": 12,
+                "y": 7
+            },
+            "hiddenSeries": false,
+            "id": 6,
+            "legend": {
+                "alignAsTable": false,
+                "avg": false,
+                "current": false,
+                "hideEmpty": false,
+                "hideZero": false,
+                "max": false,
+                "min": false,
+                "rightSide": false,
+                "show": true,
+                "total": false,
+                "values": false
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.0",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [{
+                    "expr": "node_load1{job=\"nodeexporter\"}",
+                    "interval": "200",
+                    "legendFormat": "Load avg 1 m",
+                    "refId": "A"
+                },
+                {
+                    "expr": "node_load5{job=\"nodeexporter\"}",
+                    "hide": false,
+                    "interval": "200",
+                    "legendFormat": "Load avg 5 m",
+                    "refId": "B"
+                },
+                {
+                    "expr": "node_load15{job=\"nodeexporter\"}",
+                    "hide": false,
+                    "interval": "200",
+                    "legendFormat": "Load avg 15 m",
+                    "refId": "C"
+                }
+            ],
+            "thresholds": [{
+                "colorMode": "critical",
+                "fill": true,
+                "line": true,
+                "op": "gt",
+                "value": 4,
+                "visible": true
+            }],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "CPUla",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [{
+                    "$$hashKey": "object:1639",
+                    "format": "none",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "$$hashKey": "object:1640",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "alert": {
+                "alertRuleTags": {},
+                "conditions": [{
+                    "evaluator": {
+                        "params": [
+                            95
+                        ],
+                        "type": "gt"
+                    },
+                    "operator": {
+                        "type": "and"
+                    },
+                    "query": {
+                        "params": [
+                            "A",
+                            "5m",
+                            "now"
+                        ]
+                    },
+                    "reducer": {
+                        "params": [],
+                        "type": "diff"
+                    },
+                    "type": "query"
+                }],
+                "executionErrorState": "alerting",
+                "for": "5m",
+                "frequency": "1m",
+                "handler": 1,
+                "name": "Disk space used alert",
+                "noDataState": "no_data",
+                "notifications": []
+            },
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": null,
+            "description": "",
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {},
+                    "unit": "percent"
+                },
+                "overrides": []
+            },
+            "fill": 3,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 8,
+                "w": 24,
+                "x": 0,
+                "y": 23
+            },
+            "hiddenSeries": false,
+            "id": 20,
+            "legend": {
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "show": true,
+                "total": false,
+                "values": false
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.0",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [{
+                "expr": "100 - ((node_filesystem_avail_bytes{device!~'rootfs'} * 100) / node_filesystem_size_bytes{device!~'rootfs'})",
+                "interval": "",
+                "legendFormat": "{{mountpoint}}",
+                "refId": "A"
+            }],
+            "thresholds": [{
+                "colorMode": "critical",
+                "fill": true,
+                "line": true,
+                "op": "gt",
+                "value": 95,
+                "visible": true
+            }],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Disk space used",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [{
+                    "$$hashKey": "object:515",
+                    "decimals": null,
+                    "format": "percent",
+                    "label": null,
+                    "logBase": 1,
+                    "max": "100",
+                    "min": "0",
+                    "show": true
+                },
+                {
+                    "$$hashKey": "object:516",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        }
+    ],
+    "refresh": "5m",
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+        "list": []
+    },
+    "time": {
+        "from": "now-6h",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Netology",
+    "uid": "1tvmKeg4z",
+    "version": 15
+}

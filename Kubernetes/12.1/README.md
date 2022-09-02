@@ -136,6 +136,7 @@
 - проверить работу приложения из задания 2, запустив port-forward до кластера
 
 ---
+<<<<<<< HEAD
 
 ```bash
     ubuntu@ubuntu-VirtualBox:~$ kubectl expose deployment hello-node --type=LoadBalancer --port=8080
@@ -181,3 +182,5 @@ user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Fire
 BODY:
 -no body in request-
 ```
+=======
+>>>>>>> 51f7e9d8e91eb4af429cb1cbace2f85ff6a337d7
